@@ -1,3 +1,6 @@
 network/.terraform/
 network/terraform.tfstate
 network/terraform.tfstate.backup
+network/.terraform.lock.hcl
+
+
