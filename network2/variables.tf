@@ -12,7 +12,11 @@ variable "basename" {
 
 
 variable "public_subnets" {
-  type = map(any)
+  type = map(object(
+    {
+      az   = string
+      cidr = string
+  }))
   default = {
     sub-1 = {
       az   = "us-east-1a"
@@ -26,7 +30,11 @@ variable "public_subnets" {
 }
 
 variable "private_subnets" {
-  type = map(any)
+  type = map(object(
+    {
+      az   = string
+      cidr = string
+  }))
   default = {
     sub-1 = {
       az   = "us-east-1a"
@@ -40,6 +48,5 @@ variable "private_subnets" {
 }
 
 variable "home_ip" {
-  type    = string
-  default = "x.x.x.x/x"
+  type = string
 }

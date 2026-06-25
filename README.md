@@ -9,9 +9,16 @@
 - 2 private subnets (1a, 1b) -> NAT Gateway
 - Single NAT GW in public-1a (~$1/day)
 
+## Compute (June 24, 2026)
+- AMI filter` ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]`
+- instance type EC2 `"t3.micro"`
+- public subnet 1a
+- nginx installed and configured to serve "Welcome to rainlabs" message via `user_data`
+
+
 ## Stack
 
-ALB (public) -> EC2 (private) -> RDS (isolated)
+ALB (planned) -> EC2 (accessible via public ip, WIP) -> RDS (planned)
 
 > [!NOTE]
 > This is a work in progress!

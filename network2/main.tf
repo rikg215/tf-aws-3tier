@@ -109,7 +109,7 @@ resource "aws_security_group" "ssh" {
 # ingress rule allowing ssh traffic (port 22) in from my public ip
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   security_group_id = aws_security_group.ssh.id
-  cidr_ipv4         = "174.55.206.199/32"
+  cidr_ipv4         = var.home_ip
   from_port         = "22"
   to_port           = "22"
   ip_protocol       = "tcp"
