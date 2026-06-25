@@ -11,9 +11,9 @@ variable "key_name" {
 }
 
 variable "web_sg_id" {
-  type = string 
+  type = string
 }
 
 variable "ssh_sg_id" {
-  type = string 
+  type = string
 }

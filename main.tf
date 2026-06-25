@@ -10,7 +10,7 @@ module "compute" {
   source    = "./compute"
   vpc_id    = module.network.vpc_id
   subnet_id = module.network.public_subnet_ids[0]
-  key_name   = module.ssh.key_name
+  key_name  = module.ssh.key_name
   web_sg_id = module.network.web_sg_id
   ssh_sg_id = module.network.ssh_sg_id
 }
