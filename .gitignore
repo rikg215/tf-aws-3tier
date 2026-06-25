@@ -2,5 +2,13 @@ network/.terraform/
 network/terraform.tfstate
 network/terraform.tfstate.backup
 network/.terraform.lock.hcl
+*.tfvars
+!example.tfvars
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.pem
+*.key
+.terraform.tfstate.lock.info
 
 
