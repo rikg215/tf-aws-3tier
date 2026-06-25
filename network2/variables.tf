@@ -38,3 +38,8 @@ variable "private_subnets" {
     }
   }
 }
+
+variable "home_ip" {
+  type = string
+  default = "x.x.x.x/x"
+}
