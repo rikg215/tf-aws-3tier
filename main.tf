@@ -3,7 +3,8 @@ provider "aws" {
 }
 
 module "network" {
-  source = "./network2"
+  source  = "./network2"
+  home_ip = var.home_ip
 }
 
 module "compute" {
@@ -17,4 +18,12 @@ module "compute" {
 
 module "ssh" {
   source = "./ssh"
+}
+
+module "database" {
+  source                = "./rds"
+  priv_subnet_ids       = module.network.private_subnet_ids
+  ec2_security_group_id = module.network.web_sg_id
+  vpc_id                = module.network.vpc_id
+  db_pass               = var.db_pass
 }
