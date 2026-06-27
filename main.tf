@@ -2,8 +2,10 @@ provider "aws" {
   region = "us-east-1"
   default_tags {
     tags = {
-      Name = module.network.basename_out
-      Environment = "Testing"
+      Project = "rainlabs-3tier"
+      ManagedBy = "terraform"
+      Environment = "dev"
+      owner       = "rikg215"
     }
   }
 }

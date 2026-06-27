@@ -21,13 +21,13 @@
 - PostgreSQL engine version 15
 - 20 GB gp3 storage
 - database name appdb
-- not publically accessible
+- not publicly accessible
 - DB subnet group with private subnets from network layer
 
 
 ## Stack
 
-ALB (planned) -> EC2 (accessible via public ip, WIP) -> RDS (planned)
+ALB (planned) -> EC2 (accessible via public ip, WIP) -> RDS (implemented)
 
 > [!NOTE]
 > This is a work in progress!
