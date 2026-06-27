@@ -13,7 +13,16 @@
 - AMI filter` ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]`
 - instance type EC2 `"t3.micro"`
 - public subnet 1a
-- nginx installed and configured to serve "Welcome to rainlabs" message via `user_data`
+- nginx installed and configured to serve "Hello from Rainlabs!" message via `user_data`
+
+## RDS Database (June, 26, 2026)
+- RDS database
+- Instance class db.t3.micro
+- PostgreSQL engine version 15
+- 20 GB gp3 storage
+- database name appdb
+- not publically accessible
+- DB subnet group with private subnets from network layer
 
 
 ## Stack

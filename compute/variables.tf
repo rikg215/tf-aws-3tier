@@ -17,3 +17,7 @@ variable "web_sg_id" {
 variable "ssh_sg_id" {
   type = string
 }
+
+variable "basename_in" {
+  type = string
+}

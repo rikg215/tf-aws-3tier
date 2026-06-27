@@ -1,5 +1,11 @@
 provider "aws" {
   region = "us-east-1"
+  default_tags {
+    tags = {
+      Name = module.network.basename_out
+      Environment = "Testing"
+    }
+  }
 }
 
 module "network" {
@@ -14,6 +20,7 @@ module "compute" {
   key_name  = module.ssh.key_name
   web_sg_id = module.network.web_sg_id
   ssh_sg_id = module.network.ssh_sg_id
+  basename_in = module.network.basename_out
 }
 
 module "ssh" {

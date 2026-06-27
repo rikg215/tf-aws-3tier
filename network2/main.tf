@@ -4,7 +4,7 @@ resource "aws_vpc" "rainlabs_vpc" {
   enable_dns_support   = true
 
   tags = {
-    Name = var.tag_name
+    Name = var.basename
   }
 }
 
@@ -102,7 +102,7 @@ resource "aws_security_group" "ssh" {
   vpc_id      = aws_vpc.rainlabs_vpc.id
 
   tags = {
-    Name = "sg-ssh"
+    Name = "${var.basename}-sg-ssh"
   }
 }
 
@@ -122,7 +122,7 @@ resource "aws_security_group" "web" {
   vpc_id      = aws_vpc.rainlabs_vpc.id
 
   tags = {
-    Name = "sg-web"
+    Name = "${var.basename}-sg-web"
   }
 }
 

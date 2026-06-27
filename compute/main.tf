@@ -38,6 +38,6 @@ EOF
   subnet_id = var.subnet_id
 
   tags = {
-    Name = "rainlabs_web_instance"
+    Name = "${var.basename_in}_web_instance"
   }
 }
