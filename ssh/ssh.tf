@@ -4,7 +4,7 @@ resource "tls_private_key" "web_key" {
 }
 
 resource "aws_key_pair" "web" {
-  key_name   = "aws-3tier-key"
+  key_name   = "${var.basename_in}-web-key"
   public_key = tls_private_key.web_key.public_key_openssh
 }
 

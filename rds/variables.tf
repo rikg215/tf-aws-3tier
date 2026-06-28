@@ -10,6 +10,6 @@ variable "vpc_id" {
   type = string
 }
 
-variable "ec2_security_group_id" {
+variable "web_sg_id" {
   type = string
 }

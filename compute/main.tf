@@ -40,4 +40,8 @@ EOF
   tags = {
     Name = "${var.basename_in}_web_instance"
   }
+  metadata_options {
+    http_tokens   = "required"
+    http_endpoint = "enabled"
+  }
 }

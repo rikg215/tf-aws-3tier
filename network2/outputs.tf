@@ -3,11 +3,11 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  value = [for s in aws_subnet.rainlab_public_subnets : s.id]
+  value = [for s in aws_subnet.rainlabs_public_subnets : s.id]
 }
 
 output "private_subnet_ids" {
-  value = [for s in aws_subnet.rainlab_private_subnets : s.id]
+  value = [for s in aws_subnet.rainlabs_private_subnets : s.id]
 }
 
 output "public_route_table_id" {

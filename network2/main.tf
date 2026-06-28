@@ -8,7 +8,7 @@ resource "aws_vpc" "rainlabs_vpc" {
   }
 }
 
-resource "aws_subnet" "rainlab_public_subnets" {
+resource "aws_subnet" "rainlabs_public_subnets" {
   for_each                = var.public_subnets
   availability_zone       = each.value["az"]
   cidr_block              = each.value["cidr"]
@@ -20,7 +20,7 @@ resource "aws_subnet" "rainlab_public_subnets" {
   }
 }
 
-resource "aws_subnet" "rainlab_private_subnets" {
+resource "aws_subnet" "rainlabs_private_subnets" {
   for_each          = var.private_subnets
   availability_zone = each.value["az"]
   cidr_block        = each.value["cidr"]
@@ -49,7 +49,7 @@ resource "aws_eip" "rainlabs_eip" {
 
 resource "aws_nat_gateway" "rainlabs_ngw" {
   allocation_id = aws_eip.rainlabs_eip.id
-  subnet_id     = aws_subnet.rainlab_public_subnets["sub-1"].id
+  subnet_id     = aws_subnet.rainlabs_public_subnets["sub-1"].id
 
   tags = {
     Name = "${var.basename}-ngw"
@@ -84,13 +84,13 @@ resource "aws_route_table" "rainlabs_privrt" {
 }
 
 resource "aws_route_table_association" "public" {
-  for_each       = aws_subnet.rainlab_public_subnets
+  for_each       = aws_subnet.rainlabs_public_subnets
   subnet_id      = each.value.id
   route_table_id = aws_route_table.rainlabs_pubrt.id
 }
 
 resource "aws_route_table_association" "private" {
-  for_each       = aws_subnet.rainlab_private_subnets
+  for_each       = aws_subnet.rainlabs_private_subnets
   subnet_id      = each.value.id
   route_table_id = aws_route_table.rainlabs_privrt.id
 }
@@ -129,7 +129,7 @@ resource "aws_security_group" "web" {
 # rule created to allow http access from anywhere
 resource "aws_vpc_security_group_ingress_rule" "allow_web" {
   security_group_id = aws_security_group.web.id
-  cidr_ipv4         = "0.0.0.0/0"
+  referenced_security_group_id = var.alb_sg_id
   from_port         = "80"
   to_port           = "80"
   ip_protocol       = "tcp"

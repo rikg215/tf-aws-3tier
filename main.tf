@@ -2,10 +2,10 @@ provider "aws" {
   region = "us-east-1"
   default_tags {
     tags = {
-      Project = "rainlabs-3tier"
-      ManagedBy = "terraform"
+      Project     = "rainlabs-3tier"
+      ManagedBy   = "terraform"
       Environment = "dev"
-      owner       = "rikg215"
+      Owner       = "rikg215"
     }
   }
 }
@@ -13,26 +13,37 @@ provider "aws" {
 module "network" {
   source  = "./network2"
   home_ip = var.home_ip
+  alb_sg_id = module.alb.alb_sg_id
 }
 
 module "compute" {
-  source    = "./compute"
-  vpc_id    = module.network.vpc_id
-  subnet_id = module.network.public_subnet_ids[0]
-  key_name  = module.ssh.key_name
-  web_sg_id = module.network.web_sg_id
-  ssh_sg_id = module.network.ssh_sg_id
+  source      = "./compute"
+  vpc_id      = module.network.vpc_id
+  subnet_id   = module.network.private_subnet_ids[0]
+  key_name    = module.ssh.key_name
+  web_sg_id   = module.network.web_sg_id
+  ssh_sg_id   = module.network.ssh_sg_id
   basename_in = module.network.basename_out
 }
 
 module "ssh" {
-  source = "./ssh"
+  source      = "./ssh"
+  basename_in = module.network.basename_out
 }
 
 module "database" {
-  source                = "./rds"
-  priv_subnet_ids       = module.network.private_subnet_ids
-  ec2_security_group_id = module.network.web_sg_id
-  vpc_id                = module.network.vpc_id
-  db_pass               = var.db_pass
+  source          = "./rds"
+  priv_subnet_ids = module.network.private_subnet_ids
+  web_sg_id       = module.network.web_sg_id
+  vpc_id          = module.network.vpc_id
+  db_pass         = var.db_pass
+}
+
+module "alb" {
+  source            = "./alb"
+  ec2_id            = module.compute.ec2_id
+  vpc_id            = module.network.vpc_id
+  public_subnet_ids = module.network.public_subnet_ids
+  web_sg_id         = module.network.web_sg_id
+  basename          = module.network.basename_out
 }

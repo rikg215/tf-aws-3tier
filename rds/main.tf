@@ -15,7 +15,7 @@ resource "aws_vpc_security_group_ingress_rule" "rds_ingress" {
   from_port                    = "5432"
   ip_protocol                  = "tcp"
   to_port                      = "5432"
-  referenced_security_group_id = var.ec2_security_group_id
+  referenced_security_group_id = var.web_sg_id
 }
 
 
