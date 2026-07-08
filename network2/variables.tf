@@ -42,7 +42,3 @@ variable "private_subnets" {
     }
   }
 }
-
-variable "home_ip" {
-  type = string
-}

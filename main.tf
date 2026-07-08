@@ -11,8 +11,8 @@ provider "aws" {
 }
 
 module "network" {
-  source    = "./network2"
-  home_ip   = var.home_ip
+  source  = "./network2"
+  home_ip = var.home_ip
 }
 
 module "compute" {
@@ -23,6 +23,8 @@ module "compute" {
   web_sg_id            = module.network.web_sg_id
   basename_in          = module.network.basename_out
   iam_instance_profile = module.iam.instance_profile_name
+
+  depends_on = [ module.network ]
 }
 
 module "ssh" {

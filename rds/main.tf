@@ -24,7 +24,7 @@ resource "aws_vpc_security_group_ingress_rule" "rds_ingress" {
 
 resource "aws_db_instance" "rds" {
   engine                 = "postgres"
-  engine_version         = 15
+  engine_version         = "15"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
   storage_type           = "gp3"

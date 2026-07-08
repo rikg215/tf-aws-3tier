@@ -25,10 +25,11 @@ resource "aws_instance" "web" {
 
   user_data = <<EOF
 #!/bin/bash
+export DEBIAN_FRONTEND=noninteractive
 echo "Installing nginx on the server."
-apt update
-apt install nginx -y
-systemctl enable nginx
+apt-get update -y
+apt-get install nginx -y
+systemctl enable --now nginx
 
 echo "Adding custom nginx content."
 echo "Hello from Rainlabs!" > /var/www/html/index.html

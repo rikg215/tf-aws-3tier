@@ -12,7 +12,7 @@
 ## Compute (June 24, 2026)
 - AMI filter` ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]`
 - instance type EC2 `"t3.micro"`
-- public subnet 1a
+- private subnet 1a (no public IP, admin via SSM)
 - nginx installed and configured to serve "Hello from Rainlabs!" message via `user_data`
 
 ## RDS Database (June, 26, 2026)
@@ -27,7 +27,13 @@
 
 ## Stack
 
-ALB (planned) -> EC2 (accessible via public ip, WIP) -> RDS (implemented)
+ALB (active) -> EC2 (private,SSM) -> RDS (private)
 
 > [!NOTE]
-> This is a work in progress!
+> Destroy nightly, apply on demand"
+
+## Security Posture
+- SSM-only admin
+- no public IP
+- RDS SG -> web SG
+- no WAF
