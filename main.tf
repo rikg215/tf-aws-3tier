@@ -17,7 +17,6 @@ module "network" {
 module "compute" {
   source               = "./compute"
   subnet_id            = module.network.private_subnet_ids[0]
-  key_name             = module.ssh.key_name
   web_sg_id            = module.network.web_sg_id
   basename_in          = module.network.basename_out
   iam_instance_profile = module.iam.instance_profile_name
