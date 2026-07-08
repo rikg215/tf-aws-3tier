@@ -18,9 +18,10 @@ data "aws_ami" "ubuntu" {
 
 
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
-  key_name      = var.key_name
+  ami                  = data.aws_ami.ubuntu.id
+  instance_type        = "t3.micro"
+  key_name             = var.key_name
+  iam_instance_profile = var.iam_instance_profile
 
   user_data = <<EOF
 #!/bin/bash
@@ -33,7 +34,7 @@ echo "Adding custom nginx content."
 echo "Hello from Rainlabs!" > /var/www/html/index.html
 EOF
 
-  vpc_security_group_ids = [var.ssh_sg_id, var.web_sg_id]
+  vpc_security_group_ids = [var.web_sg_id]
 
   subnet_id = var.subnet_id
 

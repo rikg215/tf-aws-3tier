@@ -11,19 +11,18 @@ provider "aws" {
 }
 
 module "network" {
-  source  = "./network2"
-  home_ip = var.home_ip
-  alb_sg_id = module.alb.alb_sg_id
+  source    = "./network2"
+  home_ip   = var.home_ip
 }
 
 module "compute" {
-  source      = "./compute"
-  vpc_id      = module.network.vpc_id
-  subnet_id   = module.network.private_subnet_ids[0]
-  key_name    = module.ssh.key_name
-  web_sg_id   = module.network.web_sg_id
-  ssh_sg_id   = module.network.ssh_sg_id
-  basename_in = module.network.basename_out
+  source               = "./compute"
+  vpc_id               = module.network.vpc_id
+  subnet_id            = module.network.private_subnet_ids[0]
+  key_name             = module.ssh.key_name
+  web_sg_id            = module.network.web_sg_id
+  basename_in          = module.network.basename_out
+  iam_instance_profile = module.iam.instance_profile_name
 }
 
 module "ssh" {
@@ -46,4 +45,8 @@ module "alb" {
   public_subnet_ids = module.network.public_subnet_ids
   web_sg_id         = module.network.web_sg_id
   basename          = module.network.basename_out
+}
+
+module "iam" {
+  source = "./iam"
 }

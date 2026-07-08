@@ -95,26 +95,6 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.rainlabs_privrt.id
 }
 
-# security group that handles ssh
-resource "aws_security_group" "ssh" {
-  name        = "ssh"
-  description = "security group regarding ssh rules"
-  vpc_id      = aws_vpc.rainlabs_vpc.id
-
-  tags = {
-    Name = "${var.basename}-sg-ssh"
-  }
-}
-
-# ingress rule allowing ssh traffic (port 22) in from my public ip
-resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
-  security_group_id = aws_security_group.ssh.id
-  cidr_ipv4         = var.home_ip
-  from_port         = "22"
-  to_port           = "22"
-  ip_protocol       = "tcp"
-}
-
 # security group that handles web access
 resource "aws_security_group" "web" {
   name        = "web"
@@ -124,15 +104,6 @@ resource "aws_security_group" "web" {
   tags = {
     Name = "${var.basename}-sg-web"
   }
-}
-
-# rule created to allow http access from anywhere
-resource "aws_vpc_security_group_ingress_rule" "allow_web" {
-  security_group_id = aws_security_group.web.id
-  referenced_security_group_id = var.alb_sg_id
-  from_port         = "80"
-  to_port           = "80"
-  ip_protocol       = "tcp"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_out" {

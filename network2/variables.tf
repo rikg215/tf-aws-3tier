@@ -46,7 +46,3 @@ variable "private_subnets" {
 variable "home_ip" {
   type = string
 }
-
-variable "alb_sg_id" {
-  type = string
-}

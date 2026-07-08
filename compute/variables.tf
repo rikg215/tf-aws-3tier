@@ -14,10 +14,10 @@ variable "web_sg_id" {
   type = string
 }
 
-variable "ssh_sg_id" {
+variable "basename_in" {
   type = string
 }
 
-variable "basename_in" {
+variable "iam_instance_profile" {
   type = string
 }

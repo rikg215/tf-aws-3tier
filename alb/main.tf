@@ -60,3 +60,12 @@ resource "aws_lb_listener" "http" {
     target_group_arn = aws_lb_target_group.web.arn
   }
 }
+
+resource "aws_vpc_security_group_ingress_rule" "allow_web_from_alb" {
+  security_group_id            = var.web_sg_id
+  referenced_security_group_id = aws_security_group.alb.id
+  from_port                    = 80
+  to_port                      = 80
+  ip_protocol                  = "tcp"
+  description                  = "HTTP from ALB"
+}
