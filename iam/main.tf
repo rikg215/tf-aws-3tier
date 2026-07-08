@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ec2-ssm-role" {
-  name = "ec2-ssm-role"
+  name = "${var.basename}-ec2-ssm-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -21,6 +21,6 @@ resource "aws_iam_role_policy_attachment" "ec2-ssm-role-attachment" {
 }
 
 resource "aws_iam_instance_profile" "ec2-ssm-profile" {
-  name = "ec2-ssm-profile"
+  name = "${var.basename}ec2-ssm-profile"
   role = aws_iam_role.ec2-ssm-role.name
 }

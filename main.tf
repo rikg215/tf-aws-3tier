@@ -43,4 +43,5 @@ module "alb" {
 
 module "iam" {
   source = "./iam"
+  basename = module.network.basename_out
 }
