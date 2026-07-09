@@ -97,7 +97,7 @@ resource "aws_route_table_association" "private" {
 
 # security group that handles web access
 resource "aws_security_group" "web" {
-  name        = "web"
+  name        = "${var.basename}-web"
   description = "security group for web access control"
   vpc_id      = aws_vpc.rainlabs_vpc.id
 

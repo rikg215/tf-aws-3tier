@@ -1,11 +1,11 @@
 resource "aws_db_subnet_group" "db_subnet" {
-  name       = "rainlabs_db_subnet"
+  name       = "${var.basename}_db_subnet"
   subnet_ids = var.priv_subnet_ids
 
 }
 
 resource "aws_security_group" "rds" {
-  name        = "rds"
+  name        = "${var.basename}-rds-sg"
   description = "RDS database security group"
   vpc_id      = var.vpc_id
 }

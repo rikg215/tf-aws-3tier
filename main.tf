@@ -30,6 +30,7 @@ module "database" {
   web_sg_id       = module.network.web_sg_id
   vpc_id          = module.network.vpc_id
   db_pass         = var.db_pass
+  basename = module.network.basename_out
 }
 
 module "alb" {

@@ -13,3 +13,7 @@ variable "vpc_id" {
 variable "web_sg_id" {
   type = string
 }
+
+variable "basename" {
+  type = string
+}

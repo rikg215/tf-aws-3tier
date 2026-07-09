@@ -6,7 +6,7 @@ resource "aws_iam_role" "ec2-ssm-role" {
       {
         Action = "sts:AssumeRole"
         Effect = "Allow"
-        Sid    = ""
+        Sid    = "EC2AssumeRole"
         Principal = {
           Service = "ec2.amazonaws.com"
         }
