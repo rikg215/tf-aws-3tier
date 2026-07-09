@@ -6,3 +6,5 @@
 *.pem
 *.key
 .terraform.tfstate.lock.info
+**/.terraform.lock.hcl
+!/.terraform.lock.hcl

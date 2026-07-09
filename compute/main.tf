@@ -21,6 +21,9 @@ resource "aws_instance" "web" {
   ami                  = data.aws_ami.ubuntu.id
   instance_type        = "t3.micro"
   iam_instance_profile = var.iam_instance_profile
+  root_block_device {
+    encrypted = true
+  }
 
   user_data = <<EOF
 #!/bin/bash

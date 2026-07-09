@@ -10,7 +10,7 @@
 - Single NAT GW in public-1a (~$1/day)
 
 ## Compute (June 24, 2026)
-- AMI filter` ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]`
+- AMI filter `["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]`
 - instance type EC2 `"t3.micro"`
 - private subnet 1a (no public IP, admin via SSM)
 - nginx installed and configured to serve "Hello from Rainlabs!" message via `user_data`
@@ -30,7 +30,7 @@
 ALB (active) -> EC2 (private,SSM) -> RDS (private)
 
 > [!NOTE]
-> Destroy nightly, apply on demand"
+> Destroy nightly, apply on demand
 
 ## Security Posture
 - SSM-only admin
